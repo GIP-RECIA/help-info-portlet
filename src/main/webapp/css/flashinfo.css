@@ -1,0 +1,184 @@
+/**
+ * Copyright © 2016 ESUP-Portail (https://www.esup-portail.org/)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+.helpInfoPortlet .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    margin: 0px;
+    padding: 0px;
+    min-height: 120px;
+}
+.helpInfoPortlet .carousel-control {
+    width:3em;
+}
+.helpInfoPortlet .carousel-caption {
+    z-index: 0;
+    padding: 0em 4em 0em 4em;
+    text-align: left;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    height: 100%;
+    width: 50%;
+    text-shadow: none;
+}
+
+.helpInfoPortlet .carousel-indicators {
+    bottom: 0px;
+}
+.helpInfoPortlet .glyphicon-chevron-left:before {
+    content: "\e257";
+}
+.helpInfoPortlet .glyphicon-chevron-right:before {
+    content: "\e258";
+}
+.helpInfoPortlet .carousel-caption>p {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    text-decoration: none;
+    margin: 0 auto;
+    /** Part to "ellipsise" the text */
+    font-size: 1em;
+    line-height: 1.4em;
+    display: -webkit-box;
+    /* height = line-height * font-size * nb_lines */
+    height:7em;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* for old browsers */
+    word-wrap: break-word;
+    /* if justify it will break the ... display
+    text-align:justify;*/
+    /* it permit to "justify" the text but wait that hyphen works on chrome
+    word-break: break-all;*/
+    /* there is a bug on chrome no hyphen is shown : https://codereview.chromium.org/2342553003*/
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
+
+.helpInfoPortlet .carousel-caption>h3 {
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 2em;
+    text-overflow:ellipsis;
+}
+
+.helpInfoPortlet .carousel-caption .knowMoreText {
+    position: absolute;
+    right: 10%;
+    left: auto;
+    z-index: 5 !important;
+    font-weight:bold;
+}
+.helpInfoPortlet .item.ab-dark .carousel-caption > h3,
+.helpInfoPortlet .item.ab-dark .carousel-caption > p,
+.helpInfoPortlet .item.ab-dark .carousel-caption .knowMoreText,
+.helpInfoPortlet .ab-dark a .glyphicon,
+.helpInfoPortlet .ab-dark a  {
+    color:white;
+}
+
+.helpInfoPortlet .item.ab-light .carousel-caption > h3,
+.helpInfoPortlet .item.ab-light .carousel-caption > p,
+.helpInfoPortlet .item.ab-light .carousel-caption .knowMoreText,
+.helpInfoPortlet .ab-light a .glyphicon,
+.helpInfoPortlet .ab-light a  {
+    color:black;
+}
+.helpInfoPortlet .ab-light .carousel-indicators > li {
+    border-color: black;
+}
+.helpInfoPortlet .ab-light .carousel-indicators > li.active {
+    background-color: black;
+}
+
+@media (min-width : 1024px) {
+    .helpInfoPortlet .modal-dialog {
+        min-width: 80%;
+        max-width: 1024px;
+    }
+}
+/* Extra small devices (phones, less than 768px) */
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+/* Large devices (large desktops, 1200px and up) */
+@media (max-width : 480px){
+    .helpInfoPortlet .carousel-caption>p{
+        display:none;
+    }
+}
+@media (min-width : 481px) and (max-width : 560px) {
+    .helpInfoPortlet .carousel-caption>p{
+        /* height = line-height * font-size * nb_lines */
+        height:2.8em;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width : 768px){
+    .helpInfoPortlet .carousel-caption{
+        padding-top: 1.5em;
+    }
+}
+@media (min-width : 560px) and (max-width : 768px){
+    .helpInfoPortlet .carousel-caption>p{
+        /* height = line-height * font-size * nb_lines */
+        height:4.2em;
+        -webkit-line-clamp: 3;
+    }
+}
+
+@media ( max-width : 992px) {
+    .helpInfoPortlet .carousel-caption {
+        width: 100%;
+        height:100%;
+    }
+    .helpInfoPortlet .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+        width: 100%;
+    }
+}
+@media ( max-width : 992px) and (min-width: 769px) {
+    .helpInfoPortlet .carousel-caption > p {
+        /* height = line-height * font-size * nb_lines */
+        height: 7em;
+        -webkit-line-clamp: 5;
+
+    }
+}
+/* splitting in 2 the view after 992px */
+@media ( min-width : 993px) {
+    .helpInfoPortlet .carousel-caption {
+        width: 50%;
+    }
+    .helpInfoPortlet .carousel-indicators {
+        right: 0;
+        left: auto;
+    }
+    .helpInfoPortlet .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+        width: 50%;
+    }
+}
+/* fix problem when 5 lines and the text take too much place it's placed in front of carousel-indicators and the knowMoreText */
+@media ( max-width : 1168px) and (min-width: 993px)  {
+    .helpInfoPortlet .carousel-caption>p{
+        height:4.2em;
+        -webkit-line-clamp: 3;
+    }
+}

@@ -1,0 +1,8 @@
+[
+    {
+        "wrong":"https://my.domain.fr/imgdw6.jpg",
+        "bad":"My bad title ",
+        "emtpy":"",
+        "nullable":null
+    }
+]
