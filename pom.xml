@@ -38,9 +38,9 @@
   </description>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/GIP-RECIA/help-info-portlet.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/help-info-portlet.git</developerConnection>
-    <url>https://github.com/GIP-RECIA/help-info-portlet.git</url>
+    <connection>scm:git:ssh://esco@gitrecia-as-entservers:shared/help-info-portlet.git</connection>
+    <developerConnection>scm:git:ssh://esco@gitrecia-as-entservers:shared/help-info-portlet.git</developerConnection>
+    <url>https://git.recia.fr:shared/help-info-portlet.git</url>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>

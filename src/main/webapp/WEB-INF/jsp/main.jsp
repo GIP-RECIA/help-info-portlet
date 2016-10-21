@@ -84,7 +84,7 @@
 		<a href="http://test-lycee.reciaent.fr/aide/AideENT/indexAideENT.html" target="_blank" > tester</a>
 --%>
 		
-		<a href="http://test-lycee.reciaent.fr/aide/AideENT/indexAideENT.html" target="_blank" ></a>
+		<a href="/aide/AideENT/indexAideENT.html" target="_blank" ></a>
 							
 		<div 	class="modal fade" 
 				tabindex="-1" 
