@@ -23,58 +23,24 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
         $(window).bind('load', function () {
 
             //console.log("namespace : " + namespace);
-            if ($(namespace + ' #myCarousel_' + portletId + " .item").length > 0) {
-                var defaults      = {
-                    selector:          namespace + ' #myCarousel_' + portletId + " .item img"   ,
-                    parent:               namespace + ' #myCarousel_' + portletId + " .item",
-                    exclude:              [ 'rgb(0,0,0)', 'rgb(255,255,255)' ],
-                    normalizeTextColor:   false,
-                    normalizedTextColors:  {
-                        light:      "#fff",
-                        dark:       "#000"
-                    },
-                    lumaClasses:  {
-                        light:      "ab-light",
-                        dark:       "ab-dark"
-                    }
-                };
-                $.adaptiveBackground.run(defaults);
+            
 
-                // évènement de fin de recherche de couleur dominante d'une image
-                $(namespace + ' #myCarousel_' + portletId + " .item img").on('ab-color-found', function(ev,payload) {
-                    //console.log(payload.color);   // The dominant color in the image.
-                    //console.log(payload.palette); // The color palette found in the image.
-                    //console.log(ev);   // The jQuery.Event object
-                    colorCarouselElements($, namespace, portletId);
-                });
-
-                 // évènement de slide du carousel terminé
-                $(namespace + ' #myCarousel_' + portletId).on('slid.bs.carousel', function (e) {
-                    colorCarouselElements($, namespace, portletId);
-                });
-
+                
+                console.log("pose on click " + namespace + '#HelpInfo_' + portletId);
+                
+                var ancreSelector = namespace + ' > a';
                 // event on open help know more url
-                if (openKnownMoreInModal) {
-                    $(namespace + ' #myCarousel_' + portletId + ' .carousel-caption>a').on('click', function (e) {
+               
+                    $(ancre).on('click', function (e) {
+                    	console.log("execute on click");
                         e.preventDefault();
-                        $(namespace + ' #helpInfoModal' + portletId).modal('show').find('.modal-body').load($(this).attr('href'));
+                        $(namespace +  " > .modal").modal('show').find('.modal-body').load($(this).attr('href'));
                     });
-                }
-            } else {
-                console.log("HelpInfo doesn't have element to show !")
-            }
+                 $(ancreSelector).trigger( "click" );
+           
         });
 
     })($, namespace, portletId, openKnownMoreInModal);
 
-    function colorCarouselElements($, namespace, portletId) {
-        var selector = $(namespace + ' #myCarousel_' + portletId + ' .item.active');
-        if (selector && selector.length > 0) {
-            if(selector.hasClass("ab-dark")) {
-                $(namespace + ' #myCarousel_' + portletId).removeClass("ab-light").addClass("ab-dark");
-            } else {
-                $(namespace + ' #myCarousel_' + portletId).removeClass("ab-dark").addClass("ab-light");
-            }
-        }
-    }
+   
 };

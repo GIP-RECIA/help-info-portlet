@@ -81,15 +81,12 @@
 			</a>
 			</c:if>
 		</div>
+		<a href="http://test-lycee.reciaent.fr/aide/AideENT/indexAideENT.html" target="_blank" > tester</a>
 --%>
-		<div> 
-		debut test
-		<a data-toggle="modal" 
-		data-target="#helpInfoModal${n}" 
-		href="file:///home/legay/BOOTSTRAP/charteENT.html" target="_blank" > tester</a>
+		
+		<a href="http://test-lycee.reciaent.fr/aide/AideENT/indexAideENT.html" target="_blank" ></a>
 							
 		<div 	class="modal fade" 
-				id="helpInfoModal${n}" 
 				tabindex="-1" 
 				role="dialog" 
 				aria-labelledby="HelpInfoModalLabel" 
@@ -107,8 +104,7 @@
 				</div>
 			</div>
 		</div>
-		fin test
-		</div>
+		
 <%-- 	</c:if> --%>
 </div>
 
