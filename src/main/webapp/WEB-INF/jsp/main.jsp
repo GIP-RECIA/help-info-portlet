@@ -16,6 +16,7 @@
 
 --%>
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp" />
+
 <rs:aggregatedResources path="skin.xml" />
 
 <script type="text/javascript">
@@ -31,13 +32,14 @@
 		portlets.bootstrapjQuery;
 		</c:when>
 		<c:otherwise>
-		portlets.bootstrapjQuery || document.write('<script src="rs/bootstrap/3.3.5/bootstrap.min.js"><\/script>');
+		portlets.bootstrapjQuery || document.write('<script src="/help-info-portlet/rs/bootstrap/3.3.5/bootstrap.min.js"><\/script>');
 		</c:otherwise>
 	</c:choose>
 
 </script>
 
 <div id="helpInfoPortlet_${n}" class="helpInfoPortlet">
+<%--   
 	<c:if test="${fn:length(helpinfos) gt 0}">
 		<div id="myCarousel_${n}" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -79,13 +81,24 @@
 			</a>
 			</c:if>
 		</div>
-		<div class="modal fade" id="helpInfoModal${n}" tabindex="-1" role="dialog" aria-labelledby="HelpInfoModalLabel" aria-hidden="true">
+--%>
+		<div> 
+		debut test
+		<a data-toggle="modal" 
+		data-target="#helpInfoModal${n}" 
+		href="file:///home/legay/BOOTSTRAP/charteENT.html" target="_blank" > tester</a>
+							
+		<div 	class="modal fade" 
+				id="helpInfoModal${n}" 
+				tabindex="-1" 
+				role="dialog" 
+				aria-labelledby="HelpInfoModalLabel" 
+				aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4>
-
 					</div>
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
@@ -94,7 +107,9 @@
 				</div>
 			</div>
 		</div>
-	</c:if>
+		fin test
+		</div>
+<%-- 	</c:if> --%>
 </div>
 
-<%@include file="/WEB-INF/jsp/scripts.jsp"%>
+<%@include file="/WEB-INF/jsp/scripts.jsp" %>

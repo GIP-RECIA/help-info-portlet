@@ -54,31 +54,7 @@
     </snapshotRepository>
   </distributionManagement>
 
-  <!--<repositories>-->
-    <!--<repository>-->
-      <!--<id>jasig-3rd-party</id>-->
-      <!--<name>Jasig 3rd Party Repository</name>-->
-      <!--<url>http://developer.jasig.org/repo/content/repositories/3rd-party</url>-->
-      <!--<releases>-->
-        <!--<enabled>true</enabled>-->
-      <!--</releases>-->
-      <!--<snapshots>-->
-        <!--<enabled>false</enabled>-->
-      <!--</snapshots>-->
-    <!--</repository>-->
-    <!--&lt;!&ndash;<repository>&ndash;&gt;-->
-      <!--&lt;!&ndash;<id>spring-repo</id>&ndash;&gt;-->
-      <!--&lt;!&ndash;<name>Spring Repository</name>&ndash;&gt;-->
-      <!--&lt;!&ndash;<url>http://repo.spring.io/release</url>&ndash;&gt;-->
-      <!--&lt;!&ndash;<releases>&ndash;&gt;-->
-        <!--&lt;!&ndash;<enabled>true</enabled>&ndash;&gt;-->
-      <!--&lt;!&ndash;</releases>&ndash;&gt;-->
-      <!--&lt;!&ndash;<snapshots>&ndash;&gt;-->
-        <!--&lt;!&ndash;<enabled>false</enabled>&ndash;&gt;-->
-      <!--&lt;!&ndash;</snapshots>&ndash;&gt;-->
-    <!--&lt;!&ndash;</repository>&ndash;&gt;-->
-  <!--</repositories>-->
-
+ 
   <!-- Dependency Version Properties -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -421,19 +397,7 @@
           <pushChanges>true</pushChanges>
         </configuration>
       </plugin>
-      <!--<plugin>-->
-        <!--<groupId>org.apache.maven.plugins</groupId>-->
-        <!--<artifactId>maven-source-plugin</artifactId>-->
-        <!--<version>2.2.1</version>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<id>attach-sources</id>-->
-            <!--<goals>-->
-              <!--<goal>jar</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
+  
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>

@@ -15,10 +15,10 @@
  */
 package org.esco.portlet.helpinfo.mvc.portlet;
 
+import java.util.List;
+
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import java.util.List;
 
 import org.esco.portlet.helpinfo.model.HelpInfo;
 import org.esco.portlet.helpinfo.service.IHelpInfoService;
@@ -43,7 +43,6 @@ public class MainController {
     @Autowired
     private IHelpInfoService helpInfoService;
 
-    @SuppressWarnings("unchecked")
     @RenderMapping
     public ModelAndView showMainView(final RenderRequest request, final RenderResponse response) {
         final String viewName = "main";        

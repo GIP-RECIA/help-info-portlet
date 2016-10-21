@@ -39,6 +39,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String PREF_HELP_URL = "helpUrl";
+    
 
     @Autowired
     private IHelpInfoResource helpInfoResource;
@@ -49,6 +50,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
 
     public List<HelpInfo> retrieveHelpInfos(final PortletRequest request) {
         final String helpUrl = request.getPreferences().getValue(PREF_HELP_URL, "false");
+      //  request.getPreferences().setValue(arg0, arg1);
         if (log.isDebugEnabled()) {
             log.debug("Preference help url is {}",helpUrl);
         }
