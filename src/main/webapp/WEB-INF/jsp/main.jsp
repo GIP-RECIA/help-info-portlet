@@ -72,15 +72,7 @@
 					<spring:message code="portlet.modal.close" />
 			</button>
 						
-						
-			
-		<form  >
-			
-						<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hide2Action}')"  > 
-						<!-- 		data-dismiss="modal" " -->
-								<spring:message code="portlet.modal.close" />2
-						</button>
-		</form>			
+					
 					</div>
 				</div>
 			</div>
