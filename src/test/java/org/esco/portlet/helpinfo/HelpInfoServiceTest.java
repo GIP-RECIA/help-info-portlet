@@ -56,10 +56,9 @@ public class HelpInfoServiceTest {
         prefs.setValue(HelpInfoServiceImpl.getPrefHelpUrl(), "/test/{ESCOUAICourant}");
         request.setPreferences(prefs);
 
-        List<HelpInfo> fil = helpInfoService.retrieveHelpInfos(request);
+        HelpInfo fil = helpInfoService.retrieveHelpInfos(request);
         Assert.notNull(fil);
-        Assert.notEmpty(fil);
-        Assert.isTrue(fil.size() == 5);
+      
         //Assert.assertEquals(url,"http://edu.internal.fr:8443/portal/test/" + MockUserResourceImpl.getESCOUAICourant().get(0));
     }
 }
