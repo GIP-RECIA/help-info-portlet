@@ -39,14 +39,13 @@
 	</c:choose>
 </script>
 
-<portlet:actionURL var="hidePermanentlyAction" name="hidePermanently" />
-<portlet:actionURL var="hideAction" name="hide" />
+<portlet:resourceURL var="hidePermanentlyAction" id="hidePermanently" />
+<portlet:resourceURL var="hideAction" id="hide" />
 
 
 <div id="helpInfoPortlet_${n}" class="helpInfoPortlet">
 	
 		<c:if test="${! helpinfos.alreadyRead}" var="testvar" >
-		avec modal
 			<a class="helpInfoOpenModal" href="/aide/AideENT/indexAideENT.html" target="_blank" ></a>
 				
 	
@@ -63,32 +62,37 @@
 					</div>
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
-		<form:form method="POST" action="${hidePermanentlyAction}"  modelAttribute="helpinfos">
-						<button type="submit" class="btn btn-default" >
+		
+				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyAction}')" >
 							<spring:message code="portlet.modal.definitClose" />
+					</button>
+		
+			<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hideAction}')"  > 
+			<!-- 		data-dismiss="modal" -->
+					<spring:message code="portlet.modal.close" />
+			</button>
+						
+						
+			
+		<form  >
+			
+						<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hide2Action}')"  > 
+						<!-- 		data-dismiss="modal" " -->
+								<spring:message code="portlet.modal.close" />2
 						</button>
-		</form:form>			
-		<form:form method="POST" action="${hideAction}"  >
-						<button type="submit" class="btn btn-default" > 
-						<!-- 		data-dismiss="modal" -->
-								<spring:message code="portlet.modal.close" />
-						</button>
-		</form:form>			
+		</form>			
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:if> 
-	
-	<portlet:actionURL var="showAction" name="show" />
-	<c:if test="${helpinfos.alreadyRead }"  >
-		sans modal
-		<div>
-		
-		<form:form method="POST" action="${showAction}"  >
-						<button type="submit" class="btn btn-default" data-dismiss="modal">show</button>
-		</form:form>	
-		</div>
+ 
+
+	<c:if test="${helpinfos.alreadyRead}"  >
+		<portlet:resourceURL var="showAction"  id="show"/>
+		<button type="button" class="btn btn-default showHelpInfo" onclick="helpInfoPortlet.cacher('${showAction}')" style="display:none">
+			 montrer help info
+		</button>	
 	</c:if>
 </div>
 

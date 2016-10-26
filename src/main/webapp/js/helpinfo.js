@@ -16,9 +16,24 @@
 var helpInfoPortlet = helpInfoPortlet || {};
 
 
+
+
 helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 
 
+	helpInfoPortlet.cacher = function(url) {
+		$('.helpInfoPortlet div.modal').modal('hide');
+		$.ajax({
+		    url: url,
+		    type: 'GET',
+		    datatype:'json',
+		    success: function(){
+		    	//rien a faire
+		    	}
+		    });	
+	};
+
+	
     (function initContainer($, namespace, portletId, openKnownMoreInModal) {
         $(window).bind('load', function () {
 
@@ -40,7 +55,8 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
            
         });
 
-    })($, namespace, portletId, openKnownMoreInModal);
-
-   
+    })($, namespace, portletId, openKnownMoreInModal);   
 };
+
+
+

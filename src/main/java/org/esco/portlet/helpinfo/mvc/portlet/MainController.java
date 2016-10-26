@@ -23,6 +23,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 import org.esco.portlet.helpinfo.model.HelpInfo;
 import org.esco.portlet.helpinfo.service.IHelpInfoService;
@@ -32,9 +34,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
+import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 /**
  * Main portlet view.
@@ -77,12 +81,11 @@ public class MainController {
         return mav;
     }
  
-    @ActionMapping("hidePermanently" )
-    public void hidePermanently(  final ActionRequest request
-			, final ActionResponse response) throws IOException {
+    @ResourceMapping("hidePermanently" )
+    public void hidePermanently(  final ResourceRequest request
+			, final ResourceResponse response) throws IOException {
     	log.debug("hidePermanently OK");
     	hide(request, response);
-    	
     	 try {
          	this.helpInfoService.noReadMore(request, true);
          } catch (ReadOnlyException e) {
@@ -90,41 +93,27 @@ public class MainController {
          }
     }
     
-    @ActionMapping("hide" )
-    public void hide(  final ActionRequest request
-			, final ActionResponse response) throws IOException {
+    @ResourceMapping("hide" )
+    public void hide(  ResourceRequest request,
+			final ResourceResponse response) throws IOException {
     	log.debug("hide OK");
-    	
-    	Enumeration<String> names = request.getAttributeNames();
-    	
-    	while (names.hasMoreElements()) {
-    		String name =  names.nextElement();
-    		
-    		log.debug("propertie  :" + name + " : " + request.getAttribute(name));
-    	}
     	helpInfoSession.setAlreadyRead(true);
-    	 
+        response.setContentType("application/json");
+        response.getWriter().write("{}");
     }
-    @ActionMapping("show" )
-    public void show(  final ActionRequest request
-			, final ActionResponse response) throws IOException {
+    
+    @ResourceMapping("show" )
+    public void show(  final ResourceRequest request
+			, final ResourceRequest response) throws IOException {
     	log.debug("show OK");
     	
-    	Enumeration<String> names = request.getAttributeNames();
-    	
-    	while (names.hasMoreElements()) {
-    		String name =  names.nextElement();
-    		
-    		log.debug("propertie  :" + name + " : " + request.getAttribute(name));
-    	}
     	helpInfoSession.setAlreadyRead(false);
     	
     	try {
          	this.helpInfoService.noReadMore(request, false);
          } catch (ReadOnlyException e) {
          	log.error("show  error " + e.getMessage());
-         }
-    	 
+         } 
     }
     
   //  @ActionMapping

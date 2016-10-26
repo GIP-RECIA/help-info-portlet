@@ -15,8 +15,12 @@
  */
 package org.esco.portlet.helpinfo.service.impl;
 
+import java.io.IOException;
+
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.ReadOnlyException;
+import javax.portlet.ValidatorException;
 
 import com.google.common.collect.Lists;
 
@@ -49,15 +53,25 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
 
     @Override
     public void  noReadMore(final PortletRequest request, boolean hide) throws ReadOnlyException {
+    	PortletPreferences pp = request.getPreferences();
+    	
     	if (hide) {
-    		request.getPreferences().setValue(PREF_HELP, "true");
+    		pp.setValue(PREF_HELP, "true");
     	} else {
-    		request.getPreferences().setValue(PREF_HELP, "false");
+    		pp.setValue(PREF_HELP, "false");
     	}
+    	
+    	try {
+			pp.store();
+			log.error(" PortletPreferences store ok ");
+		} catch (ValidatorException | IOException e) {
+			log.error(" PortletPreferences not store", e.getMessage());
+		}
     }
     
     public HelpInfo retrieveHelpInfos(final PortletRequest request) {
         final String helpNoRead = request.getPreferences().getValue(PREF_HELP, "false");
+        
         
       //  request.getPreferences().setValue(arg0, arg1);
         if (log.isDebugEnabled()) {

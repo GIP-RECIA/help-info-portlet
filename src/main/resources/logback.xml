@@ -41,7 +41,7 @@
   <!-- 
    | Specify a local property that sets up the logging directory
    +-->
-  <property scope="local" name="LOG_DIR" value="${catalina.base}/logs" />
+  <property scope="local" name="LOG_DIR" value="/home/esco/logs" />
 
   <!--
    | Setup a file based logger that rolls
