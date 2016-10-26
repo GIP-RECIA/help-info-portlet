@@ -28,7 +28,7 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
                 
                 console.log("pose on click " + namespace + '#HelpInfo_' + portletId);
                 
-                var ancreSelector = namespace + ' > a';
+                var ancreSelector = namespace + ' a.helpInfoOpenModal';
                 // event on open help know more url
                
                     $(ancreSelector).on('click', function (e) {

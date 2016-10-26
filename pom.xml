@@ -540,7 +540,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <logback.loglevel>INFO</logback.loglevel>
+        <logback.loglevel>DEBUG</logback.loglevel>
         <portlet.usePortalJsLibs>true</portlet.usePortalJsLibs>
       </properties>
     </profile>

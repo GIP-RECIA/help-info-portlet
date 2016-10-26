@@ -16,16 +16,17 @@
 package org.esco.portlet.helpinfo.service;
 
 import javax.portlet.PortletRequest;
+import javax.portlet.ReadOnlyException;
 
 import org.esco.portlet.helpinfo.model.HelpInfo;
-
-import java.util.List;
 
 /**
  * Created by jgribonvald on 14/09/16.
  */
 public interface IHelpInfoService {
 
-    List<HelpInfo> retrieveHelpInfos(final PortletRequest request);
+    HelpInfo retrieveHelpInfos(final PortletRequest request);
+
+	void noReadMore(PortletRequest request, boolean hide) throws ReadOnlyException;
 
 }

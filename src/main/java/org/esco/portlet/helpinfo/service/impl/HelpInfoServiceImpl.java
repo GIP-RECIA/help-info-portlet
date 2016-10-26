@@ -16,8 +16,7 @@
 package org.esco.portlet.helpinfo.service.impl;
 
 import javax.portlet.PortletRequest;
-
-import java.util.List;
+import javax.portlet.ReadOnlyException;
 
 import com.google.common.collect.Lists;
 
@@ -38,7 +37,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private static final String PREF_HELP_URL = "helpUrl";
+    private static final String PREF_HELP = "helpNoReadMore";
     
 
     @Autowired
@@ -48,28 +47,26 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     private IHelpUrlBuilder helpUrlBuilder;
 
 
-    public List<HelpInfo> retrieveHelpInfos(final PortletRequest request) {
-        final String helpUrl = request.getPreferences().getValue(PREF_HELP_URL, "false");
+    @Override
+    public void  noReadMore(final PortletRequest request, boolean hide) throws ReadOnlyException {
+    	if (hide) {
+    		request.getPreferences().setValue(PREF_HELP, "true");
+    	} else {
+    		request.getPreferences().setValue(PREF_HELP, "false");
+    	}
+    }
+    
+    public HelpInfo retrieveHelpInfos(final PortletRequest request) {
+        final String helpNoRead = request.getPreferences().getValue(PREF_HELP, "false");
+        
       //  request.getPreferences().setValue(arg0, arg1);
         if (log.isDebugEnabled()) {
-            log.debug("Preference help url is {}",helpUrl);
+            log.debug("Preference help helpNoRead is {}",helpNoRead);
         }
 
-        if (helpUrl == null || helpUrl.trim().isEmpty() ) {
-            return Lists.newArrayList();
-        }
-
-        // case of url is relative
-        String rewroteUrl = helpUrlBuilder.transform(request, helpUrl);
-        if (rewroteUrl == null || rewroteUrl.trim().isEmpty()) {
-            return Lists.newArrayList();
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("After url completion helpUrl is {}",rewroteUrl );
-        }
-
-        return helpInfoResource.retrieveInfos(rewroteUrl);
+        HelpInfo info = new HelpInfo();
+        info.setAlreadyRead("true".equals(helpNoRead));
+        return info;
     }
 
     public IHelpInfoResource getHelpInfoResource() {
@@ -89,7 +86,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     }
 
     public static String getPrefHelpUrl() {
-        return PREF_HELP_URL;
+        return PREF_HELP;
     }
 
 }
