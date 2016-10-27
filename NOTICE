@@ -27,10 +27,10 @@ This project includes:
   Commons IO under The Apache Software License, Version 2.0
   Commons Lang under The Apache Software License, Version 2.0
   ehcache under The Apache Software License, Version 2.0
-  help-info-portlet under Apache License Version 2.0
   Gson under Apache 2.0
   Guava: Google Core Libraries for Java under The Apache Software License, Version 2.0
   Hamcrest Core under New BSD License
+  help-info-portlet under Apache License Version 2.0
   Jackson-annotations under The Apache Software License, Version 2.0
   Jackson-core under The Apache Software License, Version 2.0
   jackson-databind under The Apache Software License, Version 2.0
