@@ -30,7 +30,7 @@
   <groupId>org.esco.portlet</groupId>
   <artifactId>help-info-portlet</artifactId>
   <packaging>war</packaging>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>help-info-portlet</name>
   <inceptionYear>2016</inceptionYear>
   <description>
@@ -38,9 +38,9 @@
   </description>
 
   <scm>
-    <connection>scm:git:ssh://esco@gitrecia-as-entservers:shared/help-info-portlet.git</connection>
-    <developerConnection>scm:git:ssh://esco@gitrecia-as-entservers:shared/help-info-portlet.git</developerConnection>
-    <url>https://git.recia.fr:shared/help-info-portlet.git</url>
+    <connection>scm:git:ssh://git@github.com/GIP-RECIA/help-info-portlet.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/help-info-portlet.git</developerConnection>
+    <url>scm:git:ssh://git@github.com/GIP-RECIA/help-info-portlet.git</url>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>
