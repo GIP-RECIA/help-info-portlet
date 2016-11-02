@@ -39,9 +39,11 @@
 	</c:choose>
 </script>
 
-<portlet:resourceURL var="hidePermanentlyAction" id="hidePermanently" />
-<portlet:resourceURL var="hideAction" id="hide" />
+<portlet:resourceURL var="hidePermanentlyResource" id="hidePermanently" />
+<portlet:resourceURL var="hideResource" id="hide" />
 
+<portlet:actionURL var="hidePermanentlyAction" name="hidePermanentlyAction" />
+<portlet:actionURL var="hideAction" name="hideAction" />
 
 <div id="helpInfoPortlet_${n}" class="helpInfoPortlet">
 	
@@ -62,17 +64,27 @@
 					</div>
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
-		
-				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyAction}')" >
+		<%-- 
+				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}')" >
 							<spring:message code="portlet.modal.definitClose" />
 					</button>
 		
-			<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hideAction}')"  > 
-			<!-- 		data-dismiss="modal" -->
+			<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hideResource}')"  > 
 					<spring:message code="portlet.modal.close" />
 			</button>
 						
-					
+		--%>
+		<form:form method="POST" action="${hidePermanentlyAction}"  modelAttribute="helpinfos" class="helpInfoAction">
+			<button type="submit" class="btn btn-default" >				
+				<spring:message code="portlet.modal.definitClose" />
+			</button>
+		</form:form>
+		<form:form method="POST" action="${hideAction}" class="helpInfoAction" >
+			<button type="submit" class="btn btn-default" >
+					<spring:message code="portlet.modal.close" />
+			</button>	
+		</form:form>
+		
 					</div>
 				</div>
 			</div>

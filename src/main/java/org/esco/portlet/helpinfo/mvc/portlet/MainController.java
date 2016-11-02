@@ -20,6 +20,7 @@ import java.util.Enumeration;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletRequest;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -70,6 +71,8 @@ public class MainController {
         	log.debug("new helpInfo");
         	helpInfo = this.helpInfoService.retrieveHelpInfos(request);
         	helpInfoSession = helpInfo;
+        } else {
+        	log.debug("old helpInfo isAlreadyRead =" + helpInfo.isAlreadyRead());
         }
    //    helpInfo.setAlreadyRead(true);
         mav.addObject("helpinfos", helpInfo);
@@ -81,26 +84,48 @@ public class MainController {
         return mav;
     }
  
+    @ActionMapping("hidePermanentlyAction" )
+    public void hidePermanently(  final ActionRequest request
+			, final ActionResponse response) throws IOException {
+    	hidePermanently(request);
+    }
+    
     @ResourceMapping("hidePermanently" )
     public void hidePermanently(  final ResourceRequest request
 			, final ResourceResponse response) throws IOException {
-    	log.debug("hidePermanently OK");
-    	hide(request, response);
-    	 try {
-         	this.helpInfoService.noReadMore(request, true);
-         } catch (ReadOnlyException e) {
-         	log.error("hidePermanently error " + e.getMessage());
-         }
+    	hidePermanently(request);
+    }
+    
+    @ActionMapping("hideAction" )
+    public void hide(  ActionRequest request,
+			final ActionResponse response) throws IOException {
+    	hide();
     }
     
     @ResourceMapping("hide" )
     public void hide(  ResourceRequest request,
 			final ResourceResponse response) throws IOException {
-    	log.debug("hide OK");
-    	helpInfoSession.setAlreadyRead(true);
+    	hide();
         response.setContentType("application/json");
         response.getWriter().write("{}");
     }
+    
+    
+  private void hidePermanently(PortletRequest request){
+	  	log.debug("hidePermanently OK");
+  		hide();
+  		try {
+         	this.helpInfoService.noReadMore(request, true);
+         } catch (ReadOnlyException e) {
+         	log.error("hidePermanently error " + e.getMessage());
+         }
+  }
+  private void hide() {
+	  	log.debug("hide OK");
+  		helpInfoSession.setAlreadyRead(true);
+  }
+    
+    
     
     @ResourceMapping("show" )
     public void show(  final ResourceRequest request
