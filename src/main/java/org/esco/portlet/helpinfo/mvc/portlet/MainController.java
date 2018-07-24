@@ -16,7 +16,6 @@
 package org.esco.portlet.helpinfo.mvc.portlet;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -35,7 +34,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
@@ -62,19 +60,19 @@ public class MainController {
         final String viewName = "main";        
         final ModelAndView mav = new ModelAndView(viewName);
         
+        HelpInfo helpInfo = helpInfoSession ;
+        
         if(log.isDebugEnabled()) {
             log.debug("Using view name " + viewName + " for main view");
+            log.debug("helpInfoSession=%s", helpInfo);
         }
         
-        HelpInfo helpInfo = helpInfoSession ;
+        
         if (helpInfo == null) {
-        	log.debug("new helpInfo");
         	helpInfo = this.helpInfoService.retrieveHelpInfos(request);
         	helpInfoSession = helpInfo;
-        } else {
-        	log.debug("old helpInfo isAlreadyRead =" + helpInfo.isAlreadyRead());
-        }
-   //    helpInfo.setAlreadyRead(true);
+        } 
+        
         mav.addObject("helpinfos", helpInfo);
 
         if(log.isDebugEnabled()) {
@@ -112,17 +110,17 @@ public class MainController {
     
     
   private void hidePermanently(PortletRequest request){
-	  	log.debug("hidePermanently OK");
   		hide();
   		try {
          	this.helpInfoService.noReadMore(request, true);
+         	log.debug("hidePermanently OK");
          } catch (ReadOnlyException e) {
          	log.error("hidePermanently error " + e.getMessage());
          }
   }
   private void hide() {
-	  	log.debug("hide OK");
   		helpInfoSession.setAlreadyRead(true);
+  		log.debug("hide OK");
   }
     
     
@@ -130,12 +128,13 @@ public class MainController {
     @ResourceMapping("show" )
     public void show(  final ResourceRequest request
 			, final ResourceRequest response) throws IOException {
-    	log.debug("show OK");
+    	
     	
     	helpInfoSession.setAlreadyRead(false);
     	
     	try {
          	this.helpInfoService.noReadMore(request, false);
+         	log.debug("show OK");
          } catch (ReadOnlyException e) {
          	log.error("show  error " + e.getMessage());
          } 

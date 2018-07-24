@@ -1,4 +1,4 @@
-  <%--
+<%--
 
     Copyright © 2016 ESUP-Portail (https://www.esup-portail.org/)
 
@@ -64,7 +64,7 @@
 					</div>
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
-		<%-- 
+		
 				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}')" >
 							<spring:message code="portlet.modal.definitClose" />
 					</button>
@@ -73,7 +73,7 @@
 					<spring:message code="portlet.modal.close" />
 			</button>
 						
-		--%>
+		<%--
 		<form:form method="POST" action="${hidePermanentlyAction}"  modelAttribute="helpinfos" class="helpInfoAction">
 			<button type="submit" class="btn btn-default" >				
 				<spring:message code="portlet.modal.definitClose" />
@@ -84,11 +84,12 @@
 					<spring:message code="portlet.modal.close" />
 			</button>	
 		</form:form>
-		
+		--%>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</c:if> 
  
 

@@ -63,7 +63,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     	
     	try {
 			pp.store();
-			log.error(" PortletPreferences store ok ");
+			log.debug(" PortletPreferences store ok ");
 		} catch (ValidatorException | IOException e) {
 			log.error(" PortletPreferences not store", e.getMessage());
 		}

@@ -30,7 +30,7 @@
         </init-param>
         <!-- This value is to 0 in dev, can set to cache at a positive value in seconds 
             for caching, or -1 to never expire cache -->
-        <expiration-cache>60</expiration-cache>
+        <expiration-cache>1</expiration-cache>
         <supports>
             <mime-type>text/html</mime-type>
             <portlet-mode>view</portlet-mode>
