@@ -41,15 +41,25 @@
 
 <portlet:resourceURL var="hidePermanentlyResource" id="hidePermanently" />
 <portlet:resourceURL var="hideResource" id="hide" />
+<portlet:resourceURL var="hideYepsPermanentlyResource" id="hideYepsPermanently" />
+<portlet:resourceURL var="hideYepsResource" id="hideYeps" />
 
+<%-- 
 <portlet:actionURL var="hidePermanentlyAction" name="hidePermanentlyAction" />
 <portlet:actionURL var="hideAction" name="hideAction" />
+--%>
 
 <div id="helpInfoPortlet_${n}" class="helpInfoPortlet">
 	
-		<c:if test="${! helpinfos.alreadyRead}" var="testvar" >
-			<a class="helpInfoOpenModal" href="/aide/AideENT/indexAideENT.html" target="_blank" ></a>
-				
+        <c:if test="${! helpinfos.alreadyRead}" var="testvar" >
+			<a class="helpInfoOpenModal" href="/aide/AideENT/indexAideENT.html" target="_blank" ></a>		
+        </c:if>
+   
+  	<%-- --%>
+       <c:if test="${! helpinfos.yepsAlreadyRead}" var="testYeps" >
+            <a class="helpInfoOpenModal yeps" href="/aide/AideENT/indexAideYeps.html" target="_blank" ></a>
+        </c:if>
+		<c:if test="${testvar || testYeps }" >				
 	
 		<div 	class="modal fade" 
 				tabindex="-1" 
@@ -65,11 +75,11 @@
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
 		
-				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}')" >
+				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}', '${hideYepsPermanentlyResource}')" >
 							<spring:message code="portlet.modal.definitClose" />
 					</button>
 		
-			<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hideResource}')"  > 
+			<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hideResource}', '${hideYepsResource}')"  > 
 					<spring:message code="portlet.modal.close" />
 			</button>
 						
@@ -95,7 +105,7 @@
 
 	<c:if test="${helpinfos.alreadyRead}"  >
 		<portlet:resourceURL var="showAction"  id="show"/>
-		<button type="button" class="btn btn-default showHelpInfo" onclick="helpInfoPortlet.cacher('${showAction}')" style="display:none">
+		<button type="button" class="btn btn-default showHelpInfo" onclick="helpInfoPortlet.cacher('${showAction}','${showAction}')" style="display:block">
 			 montrer help info
 		</button>	
 	</c:if>

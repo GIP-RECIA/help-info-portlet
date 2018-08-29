@@ -81,63 +81,86 @@ public class MainController {
        
         return mav;
     }
- 
+ /*
     @ActionMapping("hidePermanentlyAction" )
     public void hidePermanently(  final ActionRequest request
 			, final ActionResponse response) throws IOException {
-    	hidePermanently(request);
+    	hidePermanently(request, false);
     }
-    
+  */  
     @ResourceMapping("hidePermanently" )
     public void hidePermanently(  final ResourceRequest request
 			, final ResourceResponse response) throws IOException {
-    	hidePermanently(request);
+    	hidePermanently(request, false);
     }
     
+    @ResourceMapping("hideYepsPermanently" )
+    public void hideYepsPermanently(  final ResourceRequest request
+			, final ResourceResponse response) throws IOException {
+    	hidePermanently(request, true);
+    }
+   /* 
     @ActionMapping("hideAction" )
     public void hide(  ActionRequest request,
 			final ActionResponse response) throws IOException {
-    	hide();
+    	hide(false);
     }
-    
+    */
     @ResourceMapping("hide" )
     public void hide(  ResourceRequest request,
 			final ResourceResponse response) throws IOException {
-    	hide();
+    	hide(false);
         response.setContentType("application/json");
         response.getWriter().write("{}");
     }
     
+    @ResourceMapping("hideYeps" )
+    public void hideYeps(  ResourceRequest request,
+			final ResourceResponse response) throws IOException {
+    	hide(true);
+        response.setContentType("application/json");
+        response.getWriter().write("{}");
+    }
     
-  private void hidePermanently(PortletRequest request){
-  		hide();
+  private void hidePermanently(PortletRequest request, boolean yeps){
+  		hide(yeps);
   		try {
-         	this.helpInfoService.noReadMore(request, true);
-         	log.debug("hidePermanently OK");
+         	this.helpInfoService.noReadMore(request, true, yeps);
+         	log.debug("hidePermanently OK, yeps=" + yeps );
          } catch (ReadOnlyException e) {
          	log.error("hidePermanently error " + e.getMessage());
          }
   }
-  private void hide() {
-  		helpInfoSession.setAlreadyRead(true);
-  		log.debug("hide OK");
+  
+  private void hide(boolean yeps) {
+	  	if (yeps) {
+	  		helpInfoSession.setYepsAlreadyRead(true);
+	  		log.debug("hide yeps OK" );
+	  	} else {
+	  		helpInfoSession.setAlreadyRead(true);
+	  		log.debug("hide OK" );
+	  	}
   }
     
     
     
     @ResourceMapping("show" )
     public void show(  final ResourceRequest request
-			, final ResourceRequest response) throws IOException {
+			, final ResourceResponse response) throws IOException {
     	
     	
     	helpInfoSession.setAlreadyRead(false);
-    	
+    	helpInfoSession.setYepsAlreadyRead(false);
     	try {
-         	this.helpInfoService.noReadMore(request, false);
+         	this.helpInfoService.noReadMore(request, false, false);
          	log.debug("show OK");
+         	this.helpInfoService.noReadMore(request, false, true);
+         	log.debug("show yeps OK");
          } catch (ReadOnlyException e) {
          	log.error("show  error " + e.getMessage());
          } 
+    	response.setContentType("application/json");
+        response.getWriter().write("{}");
     }
     
   //  @ActionMapping

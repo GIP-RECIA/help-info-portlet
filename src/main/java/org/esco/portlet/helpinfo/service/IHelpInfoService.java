@@ -27,6 +27,6 @@ public interface IHelpInfoService {
 
     HelpInfo retrieveHelpInfos(final PortletRequest request);
 
-	void noReadMore(PortletRequest request, boolean hide) throws ReadOnlyException;
+	void noReadMore(PortletRequest request, boolean hide, boolean yeps) throws ReadOnlyException;
 
 }

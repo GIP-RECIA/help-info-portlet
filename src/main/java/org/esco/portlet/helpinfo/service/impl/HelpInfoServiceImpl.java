@@ -16,6 +16,9 @@
 package org.esco.portlet.helpinfo.service.impl;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
@@ -42,6 +45,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String PREF_HELP = "helpNoReadMore";
+    private static final String PREF_YEPS = "helpYepsNoReadMore";
     
 
     @Autowired
@@ -52,13 +56,15 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
 
 
     @Override
-    public void  noReadMore(final PortletRequest request, boolean hide) throws ReadOnlyException {
+    public void  noReadMore(final PortletRequest request, boolean hide, boolean yeps) throws ReadOnlyException {
     	PortletPreferences pp = request.getPreferences();
     	
+    	String pref = yeps ? PREF_YEPS : PREF_HELP;
+    	
     	if (hide) {
-    		pp.setValue(PREF_HELP, "true");
+    		pp.setValue(pref, "true");
     	} else {
-    		pp.setValue(PREF_HELP, "false");
+    		pp.setValue(pref, "false");
     	}
     	
     	try {
@@ -70,16 +76,21 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     }
     
     public HelpInfo retrieveHelpInfos(final PortletRequest request) {
-        final String helpNoRead = request.getPreferences().getValue(PREF_HELP, "false");
+    	PortletPreferences pp = request.getPreferences();
+        final String helpNoRead = pp.getValue(PREF_HELP, "false");
+        final String yepsNoRead = pp.getValue(PREF_YEPS, "false");
+        
         
         
       //  request.getPreferences().setValue(arg0, arg1);
         if (log.isDebugEnabled()) {
             log.debug("Preference help helpNoRead is {}",helpNoRead);
+      
         }
 
         HelpInfo info = new HelpInfo();
         info.setAlreadyRead("true".equals(helpNoRead));
+        info.setYepsAlreadyRead("true".equals(yepsNoRead));
         return info;
     }
 

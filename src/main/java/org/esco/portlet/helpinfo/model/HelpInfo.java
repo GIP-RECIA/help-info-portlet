@@ -32,6 +32,16 @@ public class HelpInfo implements Serializable {
 	
 	private boolean isAlreadyRead;
 
+	private boolean isYepsAlreadyRead;
+
+	public boolean isYepsAlreadyRead() {
+		return isYepsAlreadyRead;
+	}
+
+	public void setYepsAlreadyRead(boolean isYepsAlreadyRead) {
+		this.isYepsAlreadyRead = isYepsAlreadyRead;
+	}
+
 	public boolean isAlreadyRead() {
 		return isAlreadyRead;
 	}
