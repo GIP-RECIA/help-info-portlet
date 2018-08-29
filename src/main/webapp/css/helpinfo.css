@@ -21,6 +21,9 @@
 	display: inline;
 }
 
+.helpInfoPortlet .modal-footer span {
+	float:left;
+}
 @media (min-width : 1024px) {
     .helpInfoPortlet .modal-dialog {
         min-width: 80%;

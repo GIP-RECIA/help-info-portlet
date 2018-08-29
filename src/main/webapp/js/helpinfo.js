@@ -25,10 +25,10 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 		
 		url = urlHelp; //valeur par defaut 
 		
-		if (helpInfoPortlet.help) {
+		if (helpInfoPortlet.help == helpInfoPortlet.courant) {
 			helpInfoPortlet.help = false;
 		} else {
-			if (helpInfoPortlet.yeps) {
+			if (helpInfoPortlet.yeps == helpInfoPortlet.courant) {
 				url = urlYeps;
 				helpInfoPortlet.yeps = false;
 			}
@@ -48,14 +48,16 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 	};
 	
 	helpInfoPortlet.montrer = function(){
-		   if (helpInfoPortlet.help) {
-			   console.log("help montrer");
-        	   $(helpInfoPortlet.help).trigger( "click" );
+		   if (helpInfoPortlet.yeps) {
+			   console.log("yeps montrer");
+        	   $(helpInfoPortlet.yeps).trigger( "click" );
+        	   helpInfoPortlet.courant = helpInfoPortlet.yeps;
         	   return 1;
            } 
-		   if (helpInfoPortlet.yeps) {
-        		   console.log("yeps montrer");
-            	   $(helpInfoPortlet.yeps).trigger( "click" );
+		   if (helpInfoPortlet.help) {
+        		   console.log("help montrer");
+            	   $(helpInfoPortlet.help).trigger( "click" );
+            	   helpInfoPortlet.courant = helpInfoPortlet.help;
             	   return 1;
            }
            

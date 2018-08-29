@@ -69,12 +69,12 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4>
+				<!--  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				  		<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4> -->
 					</div>
 					<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
-		
+				<span><spring:message code="portlet.modal.infoclose" /></span>
 				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}', '${hideYepsPermanentlyResource}')" >
 							<spring:message code="portlet.modal.definitClose" />
 					</button>
@@ -105,7 +105,7 @@
 
 	<c:if test="${helpinfos.alreadyRead}"  >
 		<portlet:resourceURL var="showAction"  id="show"/>
-		<button type="button" class="btn btn-default showHelpInfo" onclick="helpInfoPortlet.cacher('${showAction}','${showAction}')" style="display:block">
+		<button type="button" class="btn btn-default showHelpInfo" onclick="helpInfoPortlet.cacher('${showAction}','${showAction}')" style="display:none">
 			 montrer help info
 		</button>	
 	</c:if>
