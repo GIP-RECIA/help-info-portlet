@@ -68,7 +68,18 @@
                 <name>helpUrl</name>
                 <value>https://test-lycee.reciaent.fr/publisher/published/help/{ESCOUAICourant}</value>
             </preference>
+            
+            <preference>
+                <name>yepsHelpFilter_objectClass</name>
+                <value>ENTEleve</value>
+            </preference>
+            <preference>
+                <name>yepsHelpFilter_ESCODomaines</name>
+                <value>lycees.netocentre.fr</value>
+            </preference>
+            
         </portlet-preferences>
+        
     </portlet>
     <user-attribute>
         <description>User Display Name</description>
@@ -90,5 +101,14 @@
         <name>ESCOUAICourant</name>
     </user-attribute>
     
+	<user-attribute>
+     <description>use by  yepsHelpFilter_objectClass preference</description>
+        <name>objectClass</name>
+    </user-attribute>
+    
+    <user-attribute>
+     <description>use by yepsHelpFilter_ESCODomaines preference</description>
+        <name>ESCODomaines</name>
+    </user-attribute>
 
 </portlet-app>

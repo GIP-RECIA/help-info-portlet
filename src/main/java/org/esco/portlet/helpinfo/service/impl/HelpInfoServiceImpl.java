@@ -18,16 +18,14 @@ package org.esco.portlet.helpinfo.service.impl;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.ValidatorException;
 
-import com.google.common.collect.Lists;
-
 import org.esco.portlet.helpinfo.dao.IHelpInfoResource;
+import org.esco.portlet.helpinfo.dao.IUserResource;
 import org.esco.portlet.helpinfo.model.HelpInfo;
 import org.esco.portlet.helpinfo.service.IHelpInfoService;
 import org.esco.portlet.helpinfo.service.bean.IHelpUrlBuilder;
@@ -47,6 +45,7 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     private static final String PREF_HELP = "helpNoReadMore";
     private static final String PREF_YEPS = "helpYepsNoReadMore";
     
+    private static final String PREF_YEPS_PREFIX_FILTER = "yepsHelpFilter_";
 
     @Autowired
     private IHelpInfoResource helpInfoResource;
@@ -54,6 +53,8 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     @Autowired
     private IHelpUrlBuilder helpUrlBuilder;
 
+    @Autowired
+    private IUserResource userResource;
 
     @Override
     public void  noReadMore(final PortletRequest request, boolean hide, boolean yeps) throws ReadOnlyException {
@@ -75,22 +76,74 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
 		}
     }
     
+    private boolean showYepsInfo(final PortletRequest request) {
+    	
+    	PortletPreferences pp = request.getPreferences();
+    	Map<String, String[]> prefMap = pp.getMap();
+    	
+    	boolean ok = false;
+    	for (String prefName : prefMap.keySet()) {
+    		
+    		if (prefName.startsWith(PREF_YEPS_PREFIX_FILTER)) {
+    			
+    			String attrName = prefName.substring(PREF_YEPS_PREFIX_FILTER.length());
+    			String[] okValues = prefMap.get(prefName);
+    			
+    			ok = false;
+    			
+    			List<String> userValues = userResource.getUserInfo(request, attrName);
+    			log.debug("showYepsInfo: attrName ={}", attrName);
+    			if (userValues != null && okValues != null) {
+    				
+		    			for (String userVal : userValues) {
+		    				
+		    				for (String okVal : okValues) {
+		    					if (okVal.equals(userVal)) {
+		    						ok = true;
+		    						break;
+		    					}
+		    				}
+		    				if (ok) {
+		    					break;
+		    				}
+		    			}
+	    		}
+    			if (! ok) {
+    				return false;
+    			}
+    			
+    		}
+		}
+    	log.debug("showYepsInfo = {}", ok);
+    	return ok;
+    }
+    
     public HelpInfo retrieveHelpInfos(final PortletRequest request) {
     	PortletPreferences pp = request.getPreferences();
-        final String helpNoRead = pp.getValue(PREF_HELP, "false");
-        final String yepsNoRead = pp.getValue(PREF_YEPS, "false");
+    	
+    	String yepsNoRead; 
+    	String helpNoRead = pp.getValue(PREF_HELP, "false");
+    	
+    	boolean showYeps = showYepsInfo(request);
+    	
+       
+        if (showYeps) {
+        	yepsNoRead = pp.getValue(PREF_YEPS, "false");
+        } else {
+        	yepsNoRead = "true";
+        }
         
         
         
       //  request.getPreferences().setValue(arg0, arg1);
         if (log.isDebugEnabled()) {
             log.debug("Preference help helpNoRead is {}",helpNoRead);
-      
+            log.debug("Preference help yepsNoRead is {}", yepsNoRead);
         }
 
         HelpInfo info = new HelpInfo();
         info.setAlreadyRead("true".equals(helpNoRead));
-        info.setYepsAlreadyRead("true".equals(yepsNoRead));
+        info.setYepsAlreadyRead(!showYeps || "true".equals(yepsNoRead));
         return info;
     }
 
@@ -113,5 +166,13 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     public static String getPrefHelpUrl() {
         return PREF_HELP;
     }
+
+	public IUserResource getUserResource() {
+		return userResource;
+	}
+
+	public void setUserResource(IUserResource userResource) {
+		this.userResource = userResource;
+	}
 
 }
