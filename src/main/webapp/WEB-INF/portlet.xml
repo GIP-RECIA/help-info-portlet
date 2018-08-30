@@ -66,7 +66,16 @@
 
             <preference>
                 <name>helpUrl</name>
+                <value>/aide/AideENT/indexAideENT.html</value>
+                <!--  
                 <value>https://test-lycee.reciaent.fr/publisher/published/help/{ESCOUAICourant}</value>
+                -->
+            </preference>
+            
+            
+            <preference>
+                <name>yepsUrl</name>
+                <value>/aide/AideYeps/indexAideYeps.html</value>
             </preference>
             
             <preference>

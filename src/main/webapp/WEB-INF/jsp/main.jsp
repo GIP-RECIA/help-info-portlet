@@ -52,12 +52,12 @@
 <div id="helpInfoPortlet_${n}" class="helpInfoPortlet">
 	
         <c:if test="${! helpinfos.alreadyRead}" var="testvar" >
-			<a class="helpInfoOpenModal" href="/aide/AideENT/indexAideENT.html" target="_blank" ></a>		
+			<a class="helpInfoOpenModal" href="${helpinfos.helpUrl}" target="_blank" ></a>		
         </c:if>
    
   	<%-- --%>
        <c:if test="${! helpinfos.yepsAlreadyRead}" var="testYeps" >
-            <a class="helpInfoOpenModal yeps" href="/aide/AideENT/indexAideYeps.html" target="_blank" ></a>
+            <a class="helpInfoOpenModal yeps" href="${helpinfos.yepsUrl}" target="_blank" ></a>
         </c:if>
 		<c:if test="${testvar || testYeps }" >				
 	
@@ -68,11 +68,11 @@
 				aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
-				<!--  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				  		<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4> -->
+			<%--   		<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				  		<h4 class="modal-title"><spring:message code="portlet.modal.title" /></h4> 
 					</div>
-					<div class="modal-body"><div class="te"></div></div>
+			--%>		<div class="modal-body"><div class="te"></div></div>
 					<div class="modal-footer">
 				<span><spring:message code="portlet.modal.infoclose" /></span>
 				<button type="button" class="btn btn-default" onclick="helpInfoPortlet.cacher('${hidePermanentlyResource}', '${hideYepsPermanentlyResource}')" >

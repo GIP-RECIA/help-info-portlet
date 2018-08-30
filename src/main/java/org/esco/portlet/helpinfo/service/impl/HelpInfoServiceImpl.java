@@ -45,6 +45,9 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
     private static final String PREF_HELP = "helpNoReadMore";
     private static final String PREF_YEPS = "helpYepsNoReadMore";
     
+    private static final String PREF_HELP_URL = "helpUrl";
+    private static final String PREF_YEPS_URL = "yepsUrl";
+    
     private static final String PREF_YEPS_PREFIX_FILTER = "yepsHelpFilter_";
 
     @Autowired
@@ -144,6 +147,9 @@ public class HelpInfoServiceImpl implements IHelpInfoService {
         HelpInfo info = new HelpInfo();
         info.setAlreadyRead("true".equals(helpNoRead));
         info.setYepsAlreadyRead(!showYeps || "true".equals(yepsNoRead));
+        
+        info.setHelpUrl(pp.getValue(PREF_HELP_URL, "/aide/AideENT/indexAideENT.html"));
+        info.setYepsUrl(pp.getValue(PREF_YEPS_URL, "/aide/AideYeps/indexAideYeps.html"));
         return info;
     }
 

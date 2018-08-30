@@ -23,12 +23,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HelpInfo implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 104271367224910613L;
+	/**
+	 * 
+	 */
 	private String imgLink;
 	private String title;
 	private String text;
 	private String knowMoreLink;
 	private String imgAlt;
 	private Set<Rubrique> rubriques;
+	
+	private String helpUrl;
+	private String yepsUrl;
 	
 	private boolean isAlreadyRead;
 
@@ -57,7 +67,8 @@ public class HelpInfo implements Serializable {
 	@JsonCreator
 	public HelpInfo(@JsonProperty(value = "mediaUrl", required = true) String imgLink, @JsonProperty(value = "title", required = true) String title,
 					 @JsonProperty(value = "summary", required = true) String text, @JsonProperty(value = "link", required = true) String knowMoreLink,
-					 @JsonProperty("rubriques") Set<Rubrique> rubriques) {
+					 @JsonProperty("rubriques") Set<Rubrique> rubriques
+					 ) {
 		this.imgLink = imgLink;
 		this.title = title;
 		this.text = text;
@@ -132,5 +143,21 @@ public class HelpInfo implements Serializable {
 				", imgAlt='" + imgAlt + '\'' +
 				", rubriques='" + rubriques.toString() + '\'' +
 				'}';
+	}
+
+	public String getHelpUrl() {
+		return helpUrl;
+	}
+
+	public void setHelpUrl(String helpUrl) {
+		this.helpUrl = helpUrl;
+	}
+
+	public String getYepsUrl() {
+		return yepsUrl;
+	}
+
+	public void setYepsUrl(String yepsUrl) {
+		this.yepsUrl = yepsUrl;
 	}
 }
