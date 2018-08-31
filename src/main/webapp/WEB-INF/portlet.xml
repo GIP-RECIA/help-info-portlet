@@ -75,16 +75,19 @@
             
             <preference>
                 <name>yepsUrl</name>
-                <value>/aide/AideYeps/indexAideYeps.html</value>
+                <value>/yeps/yeps.html</value>
             </preference>
             
             <preference>
                 <name>yepsHelpFilter_objectClass</name>
                 <value>ENTEleve</value>
             </preference>
+            
             <preference>
                 <name>yepsHelpFilter_ESCODomaines</name>
                 <value>lycees.netocentre.fr</value>
+                <value>cfa.netocentre.fr</value>
+                <value>formations-sociales.netocentre.fr</value>
             </preference>
             
         </portlet-preferences>
