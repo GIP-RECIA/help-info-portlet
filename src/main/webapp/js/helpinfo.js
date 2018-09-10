@@ -15,9 +15,6 @@
  */
 var helpInfoPortlet = helpInfoPortlet || {};
 
-
-
-
 helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 
 
@@ -49,13 +46,11 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 	
 	helpInfoPortlet.montrer = function(){
 		   if (helpInfoPortlet.yeps) {
-			   console.log("yeps montrer");
         	   $(helpInfoPortlet.yeps).trigger( "click" );
         	   helpInfoPortlet.courant = helpInfoPortlet.yeps;
         	   return 1;
            } 
 		   if (helpInfoPortlet.help) {
-        		   console.log("help montrer");
             	   $(helpInfoPortlet.help).trigger( "click" );
             	   helpInfoPortlet.courant = helpInfoPortlet.help;
             	   return 1;
@@ -66,26 +61,20 @@ helpInfoPortlet.init = function($, namespace, portletId, openKnownMoreInModal) {
 	
     (function initContainer($, namespace, portletId, openKnownMoreInModal) {
         $(window).bind('load', function () {
-
-            //console.log("namespace : " + namespace);
-                       
-                console.log("pose on click " + namespace + '#HelpInfo_' + portletId);
-                
+           
                 var ancreSelector = namespace + ' a.helpInfoOpenModal';
                 // event on open help know more url
                var ancre =  $(ancreSelector);               
                	$(ancre).on('click', function (e) {
-                    	console.log("execute on click");
+                 
                         e.preventDefault();
                         $(namespace +  " > .modal").modal('show').find('.modal-body').load($(this).attr('href'));
                     });
                	$(ancre).each(function(){
                		if ($(this).hasClass('yeps')) {
                			helpInfoPortlet.yeps = $(this);
-               			console.log("yeps trouve");
                		} else {
                			helpInfoPortlet.help = $(this);
-               			console.log("help trouve");
                		}
                	}
                	);
